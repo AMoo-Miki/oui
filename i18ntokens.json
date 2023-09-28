@@ -2653,12 +2653,12 @@
       "start": {
         "line": 143,
         "column": 4,
-        "index": 4700
+        "index": 4717
       },
       "end": {
         "line": 148,
         "column": 44,
-        "index": 4885
+        "index": 4902
       }
     },
     "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
@@ -2671,12 +2671,12 @@
       "start": {
         "line": 143,
         "column": 4,
-        "index": 4700
+        "index": 4717
       },
       "end": {
         "line": 148,
         "column": 44,
-        "index": 4885
+        "index": 4902
       }
     },
     "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
@@ -3533,14 +3533,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 267,
+        "line": 269,
         "column": 12,
-        "index": 7990
+        "index": 8078
       },
       "end": {
-        "line": 270,
+        "line": 272,
         "column": 14,
-        "index": 8112
+        "index": 8200
       }
     },
     "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"

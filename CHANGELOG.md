@@ -28,6 +28,7 @@
 - Update docsite version selector to use OUI components ([#1028](https://github.com/opensearch-project/oui/pull/1028))
 
 ### 🛠 Maintenance
+- Bump webpack to v5
 
 - Update caniuse database ([#1046](https://github.com/opensearch-project/oui/pull/1046))
 - Bump TypeScript to v4.6.4 ([#879](https://github.com/opensearch-project/oui/pull/879))

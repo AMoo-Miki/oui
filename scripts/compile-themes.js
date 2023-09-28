@@ -16,21 +16,24 @@ const globModule = require('glob');
 
 const chalk = require('chalk');
 const postcss = require('postcss');
+const { strip } = require('comment-stripper');
 
 const { compileWithVariables } = require('./lib/compile-scss-with-variables');
 const { deriveSassVariableTypes } = require('./lib/derive-sass-variable-types');
 
-const postcssConfiguration = require('../postcss.config.js');
+const { plugins: postcssPlugins } = require('../postcss.config.js');
 
 const glob = util.promisify(globModule);
 
-const postcssConfigurationWithMinification = {
-  ...postcssConfiguration,
-  plugins: [
-    ...postcssConfiguration.plugins,
-    require('cssnano')({ preset: 'default' }),
-  ],
-};
+const postcssPluginsWithMinification = [
+  require('cssnano')({
+    preset: ['default', {
+      cssDeclarationSorter: false,
+    }]
+  }),
+
+  ...postcssPlugins,
+];
 
 async function compileScssFiles(
   sourcePattern,
@@ -125,6 +128,16 @@ async function compileScssFile(
 
   const { css: renderedCss, variables: extractedVars } = await compileWithVariables(path.resolve(inputFilename));
 
+  const processedCss = strip(
+    /* OUI -> EUI Aliases: Modified */
+    // renderedCss,
+    renameToEUI ? renderedCss.toString().replace(/([. '"-])oui/g, '$1eui') : renderedCss,
+    /* End of Aliases */
+    {
+      language: 'css'
+    }
+  );
+
   /* OUI -> EUI Aliases: Modified */
   // const extractedVarTypes = await deriveSassVariableTypes(
   const extractedVarTypes_ = await deriveSassVariableTypes(
@@ -151,11 +164,8 @@ async function compileScssFile(
   const extractedVarTypes = extractedVarTypes_ + '\n' + declarations.join('\n');
   /* End of Aliases */
 
-  const { css: postprocessedCss } = await postcss(postcssConfiguration).process(
-    /* OUI -> EUI Aliases: Modified */
-    //renderedCss,
-    renameToEUI ? renderedCss.toString().replace(/([. '"-])oui/g, '$1eui') : renderedCss,
-    /* End of Aliases */
+  const { css: postprocessedCss } = await postcss(postcssPlugins).process(
+    processedCss,
     {
       from: outputCssFilename,
       to: outputCssFilename,
@@ -163,12 +173,9 @@ async function compileScssFile(
   );
 
   const { css: postprocessedMinifiedCss } = await postcss(
-    postcssConfigurationWithMinification
+    postcssPluginsWithMinification
   ).process(
-    /* OUI -> EUI Aliases: Modified */
-    //renderedCss,
-    renameToEUI ? renderedCss.toString().replace(/([. '"-])oui/g, '$1eui') : renderedCss,
-    /* End of Aliases */
+    processedCss,
     {
       from: outputCssFilename,
       to: outputCssMinifiedFilename,

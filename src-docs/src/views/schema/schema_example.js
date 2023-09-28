@@ -18,11 +18,11 @@ import { GuideSectionTypes } from '../../components';
 import { OuiSchemaItem } from '../../../../src/components';
 
 import Schema from './schema';
-const schemaSource = require('!!raw-loader!./schema');
+const schemaSource = require('./schema?raw');
 const schemaHtml = renderToHtml(Schema);
 
 import SchemaGroup from './schema_group';
-const schemaGroupSource = require('!!raw-loader!./schema');
+const schemaGroupSource = require('./schema?raw');
 const schemaGroupHtml = renderToHtml(Schema);
 
 export const SchemaExample = {
