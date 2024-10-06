@@ -37,5 +37,8 @@
 
   > div { // Targets the element for FixedSizeList that doesn't have a selector
     @include ouiScrollBar;
+
+    // Match the min-width of the Panel
+    min-width: 100%;
   }
 }

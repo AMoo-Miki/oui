@@ -37,11 +37,12 @@
     @include ouiFormControlLayoutPadding(1); /* 2 */
 
     .ouiComboBoxPill {
-      $inputMinWidth: $ouiSize;
+      $inputMinWidth: 10px;
 
       // Ensure the input doesn't drop to the next line when the OuiBadge has a very long text
       // Overrides the default OuiBadge max-width that is 100%
-      max-width: calc(100% - #{$ouiSizeXS * .5} - #{$inputMinWidth});
+      // $inputMinWidth is really 10px and the text-field has 2 x $ouiSizeXS margins
+      max-width: calc(100% - #{$ouiSizeXS * 2} - #{$inputMinWidth});
     }
 
     .ouiComboBoxIcon {

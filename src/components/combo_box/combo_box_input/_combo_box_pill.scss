@@ -45,6 +45,14 @@
     line-height: calc($ouiSizeL - 2px);
   }
 
+  // Ensure the input doesn't drop to the next line when the OuiBadge has a very long text
+  // Overrides the default OuiBadge max-width that is 100%
+  // $inputMinWidth is really 10px and the text-field has a $ouiSizeXS right margin
+  .ouiComboBox .ouiComboBox__inputWrap & {
+    $inputMinWidth: 10px;
+    max-width: calc(100% - #{$ouiSizeXS} - #{$inputMinWidth});
+  }
+
   // In a group, reduce top and left margins and increase right margin by 1px
   .ouiComboBox--compressed .ouiFormControlLayout--group &,
   .ouiComboBox--compressed .ouiFormControlLayout--group & + & /* 1 */ {
