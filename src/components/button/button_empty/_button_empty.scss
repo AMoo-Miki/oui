@@ -45,6 +45,11 @@
     font-size: $ouiFontSizeS;
   }
 
+  &.ouiButtonEmpty--xxSmall {
+    height: $ouiButtonHeightXSmall;
+    font-size: $ouiFontSizeXS;
+  }
+
   &:disabled {
     @include ouiButtonContentDisabled;
 
@@ -87,6 +92,7 @@ $ouiButtonEmptyTypes: (
   ghost: $ouiColorGhost,
   text: $ouiTextColor,
   success: $ouiColorSecondaryText,
+  subdued: $ouiTextSubduedColor,
   warning: $ouiColorWarningText,
 );
 

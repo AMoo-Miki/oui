@@ -52,6 +52,7 @@ export type OuiButtonEmptyColor =
   | 'text'
   | 'ghost'
   | 'success'
+  | 'subdued'
   | 'warning';
 
 const colorToClassNameMap: { [color in OuiButtonEmptyColor]: string } = {
@@ -60,12 +61,14 @@ const colorToClassNameMap: { [color in OuiButtonEmptyColor]: string } = {
   text: 'ouiButtonEmpty--text',
   ghost: 'ouiButtonEmpty--ghost',
   success: 'ouiButtonEmpty--success',
+  subdued: 'ouiButtonEmpty--subdued',
   warning: 'ouiButtonEmpty--warning',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
 
 const sizeToClassNameMap = {
+  xxs: 'ouiButtonEmpty--xxSmall',
   xs: 'ouiButtonEmpty--xSmall',
   s: 'ouiButtonEmpty--small',
   l: 'ouiButtonEmpty--large',
